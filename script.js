@@ -168,13 +168,12 @@ if (quoteForm) {
 
         event.preventDefault();
 
-
-        // ========================================
         // GET FORM VALUES
-        // ========================================
-
         const fullName =
             document.getElementById("fullName").value.trim();
+
+        const countryCode =
+            document.getElementById("countryCode").value;
 
         const phone =
             document.getElementById("phone").value.trim();
@@ -188,34 +187,27 @@ if (quoteForm) {
         const shipmentType =
             document.getElementById("shipmentType").value;
 
-        const origin =
-            document.getElementById("origin").value.trim();
-
-        const destination =
-            document.getElementById("destination").value.trim();
-
         const shipmentDetails =
             document.getElementById("shipmentDetails").value.trim();
 
 
-        // ========================================
-        // CREATE EMAIL MESSAGE
-        // ========================================
+        // FULL PHONE NUMBER
+        const fullPhone =
+            countryCode + " " + phone;
 
+
+        // CREATE EMAIL MESSAGE
         const message =
 `Hello Four Line Logistics,
 
 I would like to request a logistics quote.
 
 Name: ${fullName}
-Contact Number: ${phone}
+Contact Number: ${fullPhone}
 Email: ${email || "Not provided"}
 
 Service Required: ${service}
 Shipment Type: ${shipmentType}
-
-Origin: ${origin || "Not provided"}
-Destination: ${destination || "Not provided"}
 
 Shipment Details:
 ${shipmentDetails || "Not provided"}
@@ -223,10 +215,7 @@ ${shipmentDetails || "Not provided"}
 Thank you.`;
 
 
-        // ========================================
         // CREATE EMAIL
-        // ========================================
-
         const companyEmail =
             "ops@four-line.com";
 
@@ -237,17 +226,11 @@ Thank you.`;
             `mailto:${companyEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(message)}`;
 
 
-        // ========================================
         // OPEN EMAIL
-        // ========================================
-
         window.location.href = emailURL;
 
 
-        // ========================================
         // GO TO THANK YOU PAGE
-        // ========================================
-
         setTimeout(function () {
 
             window.location.href = "thank-you.html";
@@ -257,7 +240,6 @@ Thank you.`;
     });
 
 }
-
 // ========================================
 // 4. SMOOTH SCROLLING
 // ========================================

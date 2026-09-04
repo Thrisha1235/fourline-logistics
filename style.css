@@ -3741,3 +3741,38 @@ html[dir="rtl"] .faq-item summary::after {
         flex-direction: column;
     }
 }
+
+/* =========================================================
+   THANK YOU WHATSAPP BUTTON
+========================================================= */
+
+.thank-you-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 12px;
+    padding: 13px 24px;
+
+    background: #25D366;
+    color: #ffffff;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.thank-you-whatsapp:hover {
+    background: #1ebe5d;
+    transform: translateY(-2px);
+}
+
+.thank-you-whatsapp i {
+    font-size: 17px;
+}
