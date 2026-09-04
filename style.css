@@ -2925,3 +2925,141 @@ html[dir="rtl"] .faq-item summary::after {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* =========================================================
+   LANGUAGE SELECTION POPUP
+========================================================= */
+
+.language-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(7, 22, 47, 0.80);
+}
+
+.language-popup-box {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 40px 30px;
+
+    text-align: center;
+
+    background: var(--white);
+
+    border-radius: 16px;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.30);
+
+    animation: languagePopupOpen 0.4s ease;
+}
+
+.language-popup-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    background: var(--blue);
+    color: var(--white);
+
+    border-radius: 50%;
+
+    font-size: 28px;
+}
+
+.language-popup-box h2 {
+    margin-bottom: 10px;
+
+    color: var(--blue-dark);
+
+    font-size: 24px;
+}
+
+.language-popup-box p {
+    margin-bottom: 25px;
+
+    color: var(--gray);
+
+    font-size: 14px;
+}
+
+.language-options {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.language-choice {
+    flex: 1;
+
+    padding: 13px 20px;
+
+    border: 1px solid var(--orange);
+    border-radius: 6px;
+
+    background: var(--orange);
+    color: var(--white);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.language-choice:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+
+    transform: translateY(-2px);
+}
+
+@keyframes languagePopupOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .language-popup-box {
+        padding: 35px 20px;
+    }
+
+    .language-popup-box h2 {
+        font-size: 21px;
+    }
+
+    .language-options {
+        flex-direction: column;
+    }
+
+    .language-choice {
+        width: 100%;
+    }
+
+}
+
+

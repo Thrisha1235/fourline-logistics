@@ -405,3 +405,28 @@ window.addEventListener("load", function () {
     document.body.classList.add("loaded");
 
 });
+
+// ========================================
+// LANGUAGE SELECTION POPUP
+// ========================================
+
+const languagePopup = document.getElementById("languagePopup");
+const languageChoices = document.querySelectorAll(".language-choice");
+
+languageChoices.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        const selectedLanguage = this.dataset.language;
+
+        // Change website language
+        changeLanguage(selectedLanguage);
+
+        // Close popup
+        if (languagePopup) {
+            languagePopup.style.display = "none";
+        }
+
+    });
+
+});
