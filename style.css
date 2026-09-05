@@ -3265,9 +3265,10 @@ html[dir="rtl"] .faq-item summary::after {
         font-size: 28px;
     }
 
-    .coverage-grid {
-        grid-template-columns: 1fr;
-    }
+   .coverage-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px;
+}
 
 
     /* STATS */
