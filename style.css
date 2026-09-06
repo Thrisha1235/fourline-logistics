@@ -2861,7 +2861,6 @@ html[dir="rtl"] .faq-item summary::after {
     }
 }
 
-
 /* =========================================================
    MOBILE
 ========================================================= */
@@ -2889,7 +2888,9 @@ html[dir="rtl"] .faq-item summary::after {
     }
 
 
-    /* HEADER */
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
     .nav-container {
         min-height: 68px;
@@ -2901,25 +2902,18 @@ html[dir="rtl"] .faq-item summary::after {
 
     .navbar {
         position: absolute;
-
         top: 68px;
-
         left: 0;
-
         width: 100%;
 
         display: none;
-
         flex-direction: column;
-
         align-items: flex-start;
 
         gap: 18px;
-
         padding: 24px 5%;
 
         background: var(--white);
-
         border-bottom: 1px solid var(--border);
 
         box-shadow: 0 12px 30px rgba(18, 59, 122, 0.10);
@@ -2942,38 +2936,36 @@ html[dir="rtl"] .faq-item summary::after {
     }
 
 
-    /* SCROLL STRIP */
+    /* =====================================================
+       SCROLL STRIP
+    ===================================================== */
 
     .scroll-strip {
         height: 44px;
-
         margin-top: 68px;
     }
 
     .scroll-track {
         height: 44px;
-
         animation-duration: 22s;
     }
 
     .scroll-track span {
         margin: 0 12px;
-
         font-size: 9px;
-
         letter-spacing: 0.8px;
     }
 
     .scroll-track span:nth-child(even) {
         margin-left: 4px;
-
         margin-right: 4px;
-
         font-size: 9px;
     }
 
 
-    /* HERO */
+    /* =====================================================
+       HERO
+    ===================================================== */
 
     .hero {
         min-height: 620px;
@@ -2985,7 +2977,6 @@ html[dir="rtl"] .faq-item summary::after {
 
     .hero-content h1 {
         font-size: 38px;
-
         letter-spacing: -1px;
     }
 
@@ -2999,41 +2990,63 @@ html[dir="rtl"] .faq-item summary::after {
 
     .hero-buttons .btn {
         min-width: 145px;
-
         padding: 13px 20px;
     }
 
 
-    /* FEATURE */
+    /* =====================================================
+       MOBILE FEATURE
+    ===================================================== */
 
-.desktop-feature {
-    display: none;
-}
+    .desktop-feature {
+        display: none;
+    }
 
-.mobile-feature {
-    display: block;
-}
+    .mobile-feature {
+        display: block;
+    }
 
-.feature-grid {
-    grid-template-columns: repeat(2, 1fr);
-}
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+    }
 
-.feature-item {
-    border-right: 1px solid rgba(255, 255, 255, 0.10);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-}
+    .feature-item {
+        padding: 18px 12px;
 
-.feature-item:nth-child(2),
-.feature-item:nth-child(4) {
-    border-right: none;
-}
+        border-right: 1px solid rgba(255, 255, 255, 0.10);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    }
 
-.feature-item:nth-child(3),
-.feature-item:nth-child(4) {
-    border-bottom: none;
-}
+    .feature-item:nth-child(2),
+    .feature-item:nth-child(4) {
+        border-right: none;
+    }
 
-    /* IMAGE SCROLLER */
+    .feature-item:nth-child(3),
+    .feature-item:nth-child(4) {
+        border-bottom: none;
+    }
+
+    .feature-icon {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+    }
+
+    .feature-content strong {
+        font-size: 13px;
+    }
+
+    .feature-content span {
+        font-size: 11px;
+    }
+
+
+    /* =====================================================
+       IMAGE SCROLLER
+    ===================================================== */
 
     .scroller-container {
         padding: 20px 0;
@@ -3041,22 +3054,21 @@ html[dir="rtl"] .faq-item summary::after {
 
     .scroller-track {
         gap: 14px;
-
         animation-duration: 22s;
     }
 
     .scroller-track img {
         width: 230px;
-
         height: 140px;
     }
 
 
-    /* ABOUT */
+    /* =====================================================
+       ABOUT
+    ===================================================== */
 
     .about-grid {
         grid-template-columns: 1fr;
-
         gap: 45px;
     }
 
@@ -3073,14 +3085,18 @@ html[dir="rtl"] .faq-item summary::after {
     }
 
 
-    /* SERVICES */
+    /* =====================================================
+       SERVICES
+    ===================================================== */
 
     .services-grid {
         grid-template-columns: 1fr;
     }
 
 
-    /* COVERAGE */
+    /* =====================================================
+       COVERAGE
+    ===================================================== */
 
     .coverage-section {
         padding: 70px 0;
@@ -3096,12 +3112,13 @@ html[dir="rtl"] .faq-item summary::after {
 
     .coverage-grid {
         grid-template-columns: repeat(2, 1fr);
-
         gap: 12px;
     }
 
 
-    /* STATS */
+    /* =====================================================
+       STATS
+    ===================================================== */
 
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -3117,18 +3134,21 @@ html[dir="rtl"] .faq-item summary::after {
     }
 
 
-    /* INDUSTRIES */
+    /* =====================================================
+       INDUSTRIES
+    ===================================================== */
 
     .industries-grid {
         grid-template-columns: 1fr;
     }
 
 
-    /* WHY */
+    /* =====================================================
+       WHY CHOOSE US
+    ===================================================== */
 
     .why-grid {
         grid-template-columns: 1fr;
-
         gap: 40px;
     }
 
@@ -3141,18 +3161,21 @@ html[dir="rtl"] .faq-item summary::after {
     }
 
 
-    /* PROCESS */
+    /* =====================================================
+       PROCESS
+    ===================================================== */
 
     .process-grid {
         grid-template-columns: 1fr;
     }
 
 
-    /* CTA */
+    /* =====================================================
+       CTA
+    ===================================================== */
 
     .cta-content {
         flex-direction: column;
-
         align-items: flex-start;
     }
 
@@ -3161,11 +3184,12 @@ html[dir="rtl"] .faq-item summary::after {
     }
 
 
-    /* CONTACT */
+    /* =====================================================
+       CONTACT
+    ===================================================== */
 
     .contact-content {
         grid-template-columns: 1fr;
-
         gap: 45px;
     }
 
@@ -3178,11 +3202,12 @@ html[dir="rtl"] .faq-item summary::after {
     }
 
 
-    /* FOOTER */
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     .footer-grid {
         grid-template-columns: 1fr 1fr;
-
         gap: 35px;
     }
 }
@@ -3215,7 +3240,6 @@ html[dir="rtl"] .faq-item summary::after {
 
     .hero-buttons {
         flex-direction: column;
-
         align-items: stretch;
     }
 
@@ -3227,17 +3251,36 @@ html[dir="rtl"] .faq-item summary::after {
     /* FEATURE */
 
     .feature-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .feature-item {
-        border-right: none;
-
-        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        padding: 16px 10px;
+        gap: 10px;
     }
 
-    .feature-item:last-child {
+    .feature-item:nth-child(2),
+    .feature-item:nth-child(4) {
+        border-right: none;
+    }
+
+    .feature-item:nth-child(3),
+    .feature-item:nth-child(4) {
         border-bottom: none;
+    }
+
+    .feature-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .feature-content strong {
+        font-size: 13px;
+    }
+
+    .feature-content span {
+        font-size: 11px;
     }
 
 
@@ -3245,7 +3288,6 @@ html[dir="rtl"] .faq-item summary::after {
 
     .scroller-track img {
         width: 180px;
-
         height: 115px;
     }
 
@@ -3257,7 +3299,7 @@ html[dir="rtl"] .faq-item summary::after {
     }
 
 
-    /* SERVICE */
+    /* SERVICES */
 
     .service-image {
         height: 190px;
@@ -3282,10 +3324,10 @@ html[dir="rtl"] .faq-item summary::after {
         font-size: 28px;
     }
 
-   .coverage-grid { 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 12px;
-}
+    .coverage-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
 
 
     /* STATS */
@@ -3320,11 +3362,9 @@ html[dir="rtl"] .faq-item summary::after {
 
     .floating-whatsapp {
         width: 48px;
-
         height: 48px;
 
         right: 15px;
-
         bottom: 15px;
 
         font-size: 22px;
@@ -3332,11 +3372,9 @@ html[dir="rtl"] .faq-item summary::after {
 
     .floating-call {
         width: 48px;
-
         height: 48px;
 
         right: 15px;
-
         bottom: 73px;
 
         font-size: 20px;
@@ -3353,6 +3391,7 @@ html[dir="rtl"] .faq-item summary::after {
         font-size: 34px;
     }
 }
+
 
 
 /* =========================================================
