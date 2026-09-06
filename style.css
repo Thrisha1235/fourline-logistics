@@ -3852,13 +3852,20 @@ html[dir="rtl"] .faq-item summary::after {
 
 
 .footer .footer-logo {
-    display: inline-flex;
+    display: inline-flex !important;
+    flex-direction: row !important;
     align-items: center;
     margin-bottom: 18px;
     font-size: 28px;
     font-weight: 800;
     line-height: 1.2;
     text-decoration: none;
+    white-space: nowrap;
+}
+
+.footer .footer-logo .logo-four,
+.footer .footer-logo .logo-line {
+    display: inline !important;
     white-space: nowrap;
 }
 
