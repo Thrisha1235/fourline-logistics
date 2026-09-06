@@ -216,8 +216,8 @@ Thank you.`;
 
 
         // CREATE EMAIL
-        const companyEmail =
-            "ops@four-line.com";
+        const companyEmail = 
+    "ops@four-line.com,marketing@eliteinfotech.com";
 
         const emailSubject =
             "Logistics Quote Request - " + fullName;
