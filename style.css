@@ -1027,6 +1027,9 @@ button {
 
     font-size: 10px;
 }
+.mobile-feature {
+    display: none;
+}
 
 
 /* =========================================================
@@ -3003,18 +3006,32 @@ html[dir="rtl"] .faq-item summary::after {
 
     /* FEATURE */
 
-    .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.desktop-feature {
+    display: none;
+}
 
-    .feature-item {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-    }
+.mobile-feature {
+    display: block;
+}
 
-    .feature-item:nth-child(2) {
-        border-right: none;
-    }
+.feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
 
+.feature-item {
+    border-right: 1px solid rgba(255, 255, 255, 0.10);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.feature-item:nth-child(2),
+.feature-item:nth-child(4) {
+    border-right: none;
+}
+
+.feature-item:nth-child(3),
+.feature-item:nth-child(4) {
+    border-bottom: none;
+}
 
     /* IMAGE SCROLLER */
 
