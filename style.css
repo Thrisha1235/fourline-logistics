@@ -2446,20 +2446,15 @@ button {
 }
 
 .footer-logo {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     margin-bottom: 18px;
-    color: var(--white) !important;
-    font-size: 28px;
-    font-weight: 800;
-    line-height: 1.2;
-    text-decoration: none;
-    white-space: nowrap;
-    overflow: visible;
 }
 
-.footer-logo a {
-    color: var(--white) !important;
-    text-decoration: none;
+.footer-logo img {
+    width: 180px;
+    height: auto;
+    display: block;
 }
 
 .footer-company > p {
@@ -3851,28 +3846,14 @@ html[dir="rtl"] .faq-item summary::after {
 
 
 
-.footer .footer-logo {
-    display: inline-flex !important;
-    flex-direction: row !important;
+.footer-logo {
+    display: inline-flex;
     align-items: center;
     margin-bottom: 18px;
-    font-size: 28px;
-    font-weight: 800;
-    line-height: 1.2;
-    text-decoration: none;
-    white-space: nowrap;
 }
 
-.footer .footer-logo .logo-four,
-.footer .footer-logo .logo-line {
-    display: inline !important;
-    white-space: nowrap;
-}
-
-.footer .footer-logo .logo-four {
-    color: var(--white) !important;
-}
-
-.footer .footer-logo .logo-line {
-    color: var(--orange) !important;
+.footer-logo img {
+    width: 180px;
+    height: auto;
+    display: block;
 }
