@@ -1,6 +1,7 @@
-const nodemailer = require("nodemailer");
+const https = require("https");
 
 module.exports = async (req, res) => {
+
     // Only allow POST requests
     if (req.method !== "POST") {
         return res.status(405).json({
@@ -10,6 +11,7 @@ module.exports = async (req, res) => {
     }
 
     try {
+
         const {
             fullName,
             countryCode,
@@ -18,7 +20,8 @@ module.exports = async (req, res) => {
             service,
             shipmentType,
             shipmentDetails
-        } = req.body;
+        } = req.body || {};
+
 
         // Basic validation
         if (
@@ -33,30 +36,53 @@ module.exports = async (req, res) => {
             });
         }
 
-        // Create Brevo SMTP transporter
-        const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: Number(process.env.SMTP_PORT) || 587,
-            secure: false,
-            auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASSWORD
-            }
-        });
+
+        // Check Brevo API key
+        if (!process.env.BREVO_API_KEY) {
+
+            console.error("BREVO_API_KEY is missing.");
+
+            return res.status(500).json({
+                success: false,
+                message: "Email service is not configured."
+            });
+
+        }
+
 
         const fullPhone =
             `${countryCode || ""} ${phone}`.trim();
 
-        // Email sent to Four Line Logistics
-        const mailOptions = {
-            from: process.env.SMTP_FROM,
-            to: process.env.SMTP_TO,
-            replyTo: email || undefined,
+
+        // Brevo email data
+        const emailData = {
+
+            sender: {
+                name: "Four Line Logistics",
+                email: "ops@four-line.com"
+            },
+
+            to: [
+                {
+                    email: "ops@four-line.com",
+                    name: "Four Line Logistics"
+                },
+                {
+                    email: "marketing@eliteinfotech.com",
+                    name: "Elite Infotech"
+                }
+            ],
+
+            replyTo: email
+                ? {
+                    email: email
+                }
+                : undefined,
 
             subject:
                 `Logistics Quote Request - ${fullName}`,
 
-            text:
+            textContent:
 `Hello Four Line Logistics,
 
 A new logistics quote request has been submitted through the website.
@@ -74,23 +100,103 @@ ${shipmentDetails || "Not provided"}
 Thank you.
 
 This enquiry was submitted through the Four Line Logistics website.`
+
         };
 
-        // Send email
-        await transporter.sendMail(mailOptions);
 
-        return res.status(200).json({
-            success: true,
-            message: "Quote request sent successfully."
+        // Remove replyTo if customer email is empty
+        if (!emailData.replyTo) {
+            delete emailData.replyTo;
+        }
+
+
+        // Send email through Brevo API
+        const response = await new Promise((resolve, reject) => {
+
+            const request = https.request(
+                {
+                    hostname: "api.brevo.com",
+                    path: "/v3/smtp/email",
+                    method: "POST",
+
+                    headers: {
+                        "accept": "application/json",
+                        "api-key": process.env.BREVO_API_KEY,
+                        "content-type": "application/json"
+                    }
+                },
+
+                (response) => {
+
+                    let body = "";
+
+                    response.on("data", (chunk) => {
+                        body += chunk;
+                    });
+
+                    response.on("end", () => {
+
+                        resolve({
+                            statusCode: response.statusCode,
+                            body: body
+                        });
+
+                    });
+
+                }
+            );
+
+
+            request.on("error", reject);
+
+
+            request.write(
+                JSON.stringify(emailData)
+            );
+
+            request.end();
+
         });
+
+
+        console.log(
+            "Brevo response:",
+            response.statusCode,
+            response.body
+        );
+
+
+        if (
+            response.statusCode >= 200 &&
+            response.statusCode < 300
+        ) {
+
+            return res.status(200).json({
+                success: true,
+                message: "Quote request sent successfully."
+            });
+
+        }
+
+
+        return res.status(500).json({
+            success: false,
+            message: "Brevo could not send the email."
+        });
+
 
     } catch (error) {
 
-        console.error("Email sending error:", error);
+        console.error(
+            "Email sending error:",
+            error
+        );
 
         return res.status(500).json({
             success: false,
             message: "Unable to send quote request."
         });
+
     }
+
 };

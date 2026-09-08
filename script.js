@@ -155,20 +155,18 @@ if (languageBtn) {
 changeLanguage(currentLanguage);
 
 
-
 // ========================================
-// 3. QUOTE FORM → EMAIL + THANK YOU
+// 3. QUOTE FORM → BREVO EMAIL + THANK YOU
 // ========================================
 
 const quoteForm = document.getElementById("quoteForm");
 
 if (quoteForm) {
 
-    quoteForm.addEventListener("submit", function (event) {
+    quoteForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
-        // GET FORM VALUES
         const fullName =
             document.getElementById("fullName").value.trim();
 
@@ -191,51 +189,57 @@ if (quoteForm) {
             document.getElementById("shipmentDetails").value.trim();
 
 
-        // FULL PHONE NUMBER
-        const fullPhone =
-            countryCode + " " + phone;
+        try {
+
+            const response = await fetch("/api/send-quote", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    fullName,
+                    countryCode,
+                    phone,
+                    email,
+                    service,
+                    shipmentType,
+                    shipmentDetails
+
+                })
+
+            });
 
 
-        // CREATE EMAIL MESSAGE
-        const message =
-`Hello Four Line Logistics,
-
-I would like to request a logistics quote.
-
-Name: ${fullName}
-Contact Number: ${fullPhone}
-Email: ${email || "Not provided"}
-
-Service Required: ${service}
-Shipment Type: ${shipmentType}
-
-Shipment Details:
-${shipmentDetails || "Not provided"}
-
-Thank you.`;
+            const result = await response.json();
 
 
-        // CREATE EMAIL
-        const companyEmail = 
-    "ops@four-line.com,marketing@eliteinfotech.com";
+            if (response.ok && result.success) {
 
-        const emailSubject =
-            "Logistics Quote Request - " + fullName;
+                window.location.href = "thank-you.html";
 
-        const emailURL =
-            `mailto:${companyEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(message)}`;
+            } else {
+
+                alert(
+                    result.message ||
+                    "Unable to send your quote request. Please try again."
+                );
+
+            }
 
 
-        // OPEN EMAIL
-        window.location.href = emailURL;
+        } catch (error) {
 
+            console.error("Quote form error:", error);
 
-        // GO TO THANK YOU PAGE
-        setTimeout(function () {
+            alert(
+                "Unable to send your quote request. Please try again."
+            );
 
-            window.location.href = "thank-you.html";
-
-        }, 2000);
+        }
 
     });
 
