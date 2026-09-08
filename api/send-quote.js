@@ -57,10 +57,10 @@ module.exports = async (req, res) => {
         // Brevo email data
         const emailData = {
 
-            sender: {
-                name: "Four Line Logistics",
-                email: "ops@four-line.com"
-            },
+           sender: {
+    name: "Four Line Logistics",
+    email: "eliteinfotechdubai@gmail.com"
+},
 
             to: [
                 {
